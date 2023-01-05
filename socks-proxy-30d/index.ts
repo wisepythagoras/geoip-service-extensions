@@ -13,18 +13,6 @@ const resetIPList = (ipAddresses: string[]) => {
     });
 };
 
-const setup = async () => {
-    await storage.init();
-    
-    try {
-        const contents = await storage.read(DATA_STORE);
-        const ipAddresses = JSON.parse(contents) as string[];
-        resetIPList(ipAddresses);
-    } catch (e) {
-        // The data.json file is not there, so we'll wait for it to be created.
-    }
-};
-
 const getList = async () => {
     try {
         const resp = await fetch(SOCKS_PROXY_DATA, { method: 'GET' });
@@ -39,8 +27,24 @@ const getList = async () => {
     }
 };
 
+const setup = async () => {
+    await storage.init();
+    
+    try {
+        const contents = await storage.read(DATA_STORE);
+        const ipAddresses = JSON.parse(contents) as string[];
+        resetIPList(ipAddresses);
+    } catch (e) {
+        await getList();
+    }
+};
+
 const job = () => {
     getList();
+};
+
+const getEndpoint = (req: any, res: any) => {
+    res.json(200, {});
 };
 
 const install = (): ExtensionConfigT => {
@@ -51,7 +55,7 @@ const install = (): ExtensionConfigT => {
         name: 'socks_proxy_30d',
         endpoints: [{
             method: 'GET',
-            handler: '',
+            handler: 'getEndpoint',
             endpoint: '/ipset/list',
         }],
         jobs: [{
