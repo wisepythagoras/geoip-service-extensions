@@ -1,0 +1,25 @@
+{
+  "name": "misc-iplists",
+  "version": "0.1.0",
+  "source": "index.ts",
+  "browser": "dist/index.js",
+  "targets": {
+    "browser": {
+      "context": "browser",
+      "isLibrary": true,
+      "engines": {
+        "browsers": "Chrome 80"
+      }
+    }
+  },
+  "scripts": {
+    "watch": "parcel watch",
+    "build": "parcel build --no-content-hash --no-source-maps && rreplace '\\$[^\\$]+\\$var\\$' \"\" dist/index.js dist/index.js"
+  },
+  "minifyJs": {
+    "mangle": false
+  },
+  "devDependencies": {
+    "parcel": "^2.8.2"
+  }
+}
