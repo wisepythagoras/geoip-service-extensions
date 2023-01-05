@@ -120,11 +120,10 @@ type HTTPMethodT = 'GET' | 'POST' | 'PUT' | 'DELETE';
 type EndpointT = {
     /**
      * All endpoints are added under the `/api` route, so your definition
-     * should omit the `/api` part. Also, these endpoints are not specific
-     * to any extension or reserved for any extension. Make sure to pick
-     * something unique.
+     * should omit the `/api` part. These endpoints are specific to each
+     * extension.
      * @example
-     * `/list` will translate to `/api/list`
+     * `/list` will translate to `/api/my-extension/list`
      */
     endpoint: string;
     method: HTTPMethodT;
