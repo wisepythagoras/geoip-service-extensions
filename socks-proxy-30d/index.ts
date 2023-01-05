@@ -1,3 +1,5 @@
+import '../index.d';
+
 const SOCKS_PROXY_DATA = 'https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/socks_proxy_30d.ipset';
 const DATA_STORE = 'data.json';
 const TAG = 'socks_proxy_30d';
