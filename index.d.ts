@@ -78,6 +78,43 @@ declare class IP {
     contains(ip: string): boolean;
 }
 
+type RequestT = {
+    /**
+     * Returns the value of the URL param.
+     * @example
+     * // For endpoint `/my/endpoint/:myparam`
+     * const myparam = req.param('myparam');
+     * @param name The name of the URL param.
+     */
+    param: (name: string) => string;
+    /**
+     * Returns the value of the request header.
+     * @param name The name of the header.
+     */
+    getHeader: (name: string) => string;
+    /**
+     * Returns the value of the URL query. If the key doesn't exist, then it will return
+     * an empty string.
+     * @param name The name of the query param.
+     */
+    getQuery: (name: string) => string;
+};
+
+type ResponseT = {
+    /**
+     * Responds with JSON.
+     * @param status The HTTP status.
+     * @param payload The payload to return.
+     */
+    json: (status: number, payload: any) => void;
+    /**
+     * Abort the HTTP request.
+     * @param status The status to return.
+     * @param reason The reason the request is being aborted.
+     */
+    abort: (status: number, reason: string) => void;
+};
+
 type HTTPMethodT = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 type EndpointT = {

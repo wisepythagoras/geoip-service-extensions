@@ -43,8 +43,8 @@ const job = () => {
     getList();
 };
 
-const getEndpoint = (req: any, res: any) => {
-    res.json(200, {});
+const getEndpoint = (req: RequestT, res: ResponseT) => {
+    res.json(200, ipList.map((ip) => ip.ip));
 };
 
 const install = (): ExtensionConfigT => {
