@@ -1,5 +1,6 @@
 const SOCKS_PROXY_DATA = 'https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/socks_proxy_30d.ipset';
 const DATA_STORE = 'data.json';
+const TAG = 'socks_proxy_30d';
 const ipList: IP[] = [];
 
 const resetIPList = (ipAddresses: string[]) => {
@@ -27,6 +28,20 @@ const getList = async () => {
     }
 };
 
+function lookupIP(ip: string) {
+    const isSocksProxyIP = ipList.find((ipAddr) => ipAddr.contains(ip));
+
+    if (!isSocksProxyIP) {
+        return;
+    }
+
+    return {
+        info: 'This IP was marked as a socks proxy',
+        list: SOCKS_PROXY_DATA,
+        tag: TAG,
+    };
+}
+
 const setup = async () => {
     await storage.init();
     
@@ -53,6 +68,7 @@ const install = (): ExtensionConfigT => {
     return {
         version: 1,
         name: 'socks_proxy_30d',
+        hasLookup: true,
         endpoints: [{
             method: 'GET',
             handler: 'getEndpoint',

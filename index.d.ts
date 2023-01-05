@@ -151,4 +151,5 @@ type ExtensionConfigT = {
     name: string;
     endpoints: EndpointT[];
     jobs: CronJobT[];
+    hasLookup?: boolean;
 };
