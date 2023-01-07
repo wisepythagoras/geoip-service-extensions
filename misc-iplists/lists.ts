@@ -10,7 +10,7 @@ export const ipLists: IPSetT[] = [{
     name: 'socks_proxy_30d',
     url: 'https://iplists.firehol.org/?ipset=socks_proxy_30d#',
     data_url: 'https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/socks_proxy_30d.ipset',
-    interval: '0 */2 * * *',
+    interval: '1 */2 * * *',
     job: 'socksProxyUpdate',
 }, {
     name: 'tor_exit_nodes',
