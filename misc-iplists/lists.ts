@@ -22,6 +22,6 @@ export const ipLists: IPSetT[] = [{
     name: 'botscout_30d',
     url: 'https://iplists.firehol.org/?ipset=botscout_30d',
     data_url: 'https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/botscout_30d.ipset',
-    interval: '0 * * * *',
+    interval: '3 */2 * * *',
     job: 'botscoutUpdate'
 }];
